@@ -92,7 +92,7 @@ $teachers = $conn->query("SELECT t.id, u.fullname, u.email, t.department, u.prof
     <title>Manage Teachers</title>
     <style>
         body{font-family:'Segoe UI',sans-serif;margin:0;background:#ECECEC;display:flex;}
-        h2,h3{color:#492828;}
+        h3{color:#492828;}
         .sidebar{width:230px;background:#492828;color:white;min-height:100vh;padding-top:20px;}
         .sidebar h2{text-align:center;padding-bottom:20px;}
         .sidebar a{display:block;padding:14px 20px;color:white;text-decoration:none;}
@@ -120,12 +120,13 @@ $teachers = $conn->query("SELECT t.id, u.fullname, u.email, t.department, u.prof
 <div class="sidebar">
     <h2>Admin Panel</h2>
     <a href="dashboard.php">Dashboard</a>
-    <a href="students.php">Manage Students</a>
-    <a href="teachers.php">Manage Teachers</a>
-    <a href="classes.php">Manage Classes</a>
-    <a href="subjects.php">Manage Subjects</a>
-    <a href="grades.php">Manage Grades</a>
-    <a href="attendance.php">Manage Attendance</a>
+    <a href="students.php"> Students</a>
+    <a href="teachers.php"> Teachers</a>
+    <a href="classes.php"> Classes</a>
+    <a href="subjects.php"> Subjects</a>
+    <a href="grades.php"> Grades</a>
+    <a href="attendance.php"> Attendance</a>
+    <a href="pending_users.php">Pending Users</a>
     <a href="logout.php">Logout</a>
 </div>
 
@@ -138,10 +139,10 @@ $teachers = $conn->query("SELECT t.id, u.fullname, u.email, t.department, u.prof
     <!-- Add Teacher Form -->
     <h3>Add New Teacher</h3>
     <form method="POST" enctype="multipart/form-data">
-        <input type="text" name="fullname" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="text" name="department" placeholder="Department" required>
+        <label>Full name:</label><input type="text" name="fullname" placeholder="Full Name" required>
+       <label>Email:</label> <input type="email" name="email" placeholder="Email" required>
+       <label>password:</label> <input type="password" name="password" placeholder="Password" required>
+       <label>Department:</label> <input type="text" name="department" placeholder="Department" required>
         <label>Profile Picture:</label>
         <input type="file" name="profile_picture" accept="image/*">
         <button type="submit" name="add_teacher">Add Teacher</button>
@@ -191,11 +192,12 @@ $teachers = $conn->query("SELECT t.id, u.fullname, u.email, t.department, u.prof
     <?php if(isset($edit_teacher)): ?>
     <h3>Edit Teacher</h3>
     <form method="POST" enctype="multipart/form-data">
+        <label>name:<label>
         <input type="hidden" name="teacher_id" value="<?php echo $edit_teacher['id']; ?>">
         <input type="text" name="fullname" value="<?php echo $edit_teacher['fullname']; ?>" required>
-        <input type="email" name="email" value="<?php echo $edit_teacher['email']; ?>" required>
-        <input type="text" name="department" value="<?php echo $edit_teacher['department']; ?>" required>
-        <label>Profile Picture:</label>
+        <label>Email:</label><input type="email" name="email" value="<?php echo $edit_teacher['email']; ?>" required>
+        <label>Department:</label><input type="text" name="department" value="<?php echo $edit_teacher['department']; ?>" required>
+        <label></label><label>Profile Picture:</label>
         <input type="file" name="profile_picture" accept="image/*">
         <button type="submit" name="edit_teacher">Update Teacher</button>
     </form>

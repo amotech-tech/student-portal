@@ -127,12 +127,12 @@ $students = $conn->query("SELECT s.id, u.fullname, u.email, s.admission_no, s.da
 <div class="sidebar">
     <h2>Admin Panel</h2>
     <a href="dashboard.php">Dashboard</a>
-    <a href="students.php">Manage Students</a>
-    <a href="teachers.php">Manage Teachers</a>
-    <a href="classes.php">Manage Classes</a>
-    <a href="subjects.php">Manage Subjects</a>
-    <a href="grades.php">Manage Grades</a>
-    <a href="attendance.php">Manage Attendance</a>
+    <a href="students.php"> Students</a>
+    <a href="teachers.php"> Teachers</a>
+    <a href="classes.php">Classes</a>
+    <a href="subjects.php"> Subjects</a>
+    <a href="grades.php">Grades</a>
+    <a href="attendance.php"> Attendance</a>
     <a href="pending_users.php">Pending Users</a>
     <a href="logout.php">Logout</a>
 </div>
@@ -146,12 +146,12 @@ $students = $conn->query("SELECT s.id, u.fullname, u.email, s.admission_no, s.da
     <!-- Add Student Form -->
     <h3>Add New Student</h3>
     <form method="POST" enctype="multipart/form-data">
-        <input type="text" name="fullname" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="text" name="admission_no" placeholder="Admission No" required>
-        <input type="date" name="dob" required>
-        <select name="gender">
+        <label>Name:</label><input type="text" name="fullname" placeholder="Full Name" required>
+        <label>Email:</label><input type="email" name="email" placeholder="Email" required>
+       <label>Password:</label> <input type="password" name="password" placeholder="Password" required>
+        <label>Admission Number:</label><input type="text" name="admission_no" placeholder="Admission No" required>
+       <label>DOB:</label> <input type="date" name="dob" required>
+       <label>Gender:</label> <select name="gender">
             <option value="Male">Male</option>
             <option value="Female">Female</option>
         </select>
@@ -209,11 +209,11 @@ $students = $conn->query("SELECT s.id, u.fullname, u.email, s.admission_no, s.da
     <h3>Edit Student</h3>
     <form method="POST" enctype="multipart/form-data">
         <input type="hidden" name="student_id" value="<?php echo $edit_student['id']; ?>">
-        <input type="text" name="fullname" value="<?php echo $edit_student['fullname']; ?>" required>
-        <input type="email" name="email" value="<?php echo $edit_student['email']; ?>" required>
-        <input type="text" name="admission_no" value="<?php echo $edit_student['admission_no']; ?>" required>
-        <input type="date" name="dob" value="<?php echo $edit_student['date_of_birth']; ?>" required>
-        <select name="gender">
+        <label>Name:</label><input type="text" name="fullname" value="<?php echo $edit_student['fullname']; ?>" required>
+        <label>Email:</label><input type="email" name="email" value="<?php echo $edit_student['email']; ?>" required>
+        <label>Admission Number:</label><input type="text" name="admission_no" value="<?php echo $edit_student['admission_no']; ?>" required>
+       <label>DoB:</label> <input type="date" name="dob" value="<?php echo $edit_student['date_of_birth']; ?>" required>
+       <label>Gender:</label> <select name="gender">
             <option value="Male" <?php if($edit_student['gender']=='Male') echo 'selected'; ?>>Male</option>
             <option value="Female" <?php if($edit_student['gender']=='Female') echo 'selected'; ?>>Female</option>
         </select>

@@ -1,14 +1,6 @@
 <?php
 session_start(); // start session
 include "config.php"; // database connection
-if($user['status'] == 'pending'){
-    echo "Your account is pending approval by admin.";
-    exit();
-}
-if($user['status'] == 'denied'){
-    echo "Your account was denied by admin.";
-    exit();
-}
 
 if(isset($_POST['login'])){
     $email = $_POST['email'];
@@ -28,8 +20,19 @@ if(isset($_POST['login'])){
             $_SESSION['fullname'] = $user['fullname'];
             $_SESSION['role'] = $user['role'];
 
-            // Redirect to dashboard
+           if($user['role']="admin"){           
+
             header("Location: dashboard.php");
+           }
+           elseif ($user['role']="teacher") {        
+
+            header("Location: teacher_dashboard.php");
+           }
+           if($user['role']="student"){           
+
+            header("Location: student_dashboard.php");
+           }
+           
             exit;
         } else {
             $error = "Incorrect password!";
