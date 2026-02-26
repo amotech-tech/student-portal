@@ -43,8 +43,8 @@ if(isset($_POST['edit_grade'])){
 }
 
 $students = $conn->query("SELECT s.id, u.fullname FROM students s JOIN users u ON s.user_id=u.id");
-$subjects = $conn->query("SELECT id,name FROM subjets");
-$grades= $conn->query("SELECT g.id,u.fullname,sub.name AS subject,g.grade, g.term,g.year FROM grade g JOIN students s ON g.student_id=s.id JOIN users u ON s.user_id=u.id JOIN subjects sub ON g.subject_id=sub.id");
+$subjects = $conn->query("SELECT id,name FROM subjects");
+$grades= $conn->query("SELECT g.id,u.fullname,sub.name AS subject,g.grade, g.term,g.year FROM grades g JOIN students s ON g.student_id=s.id JOIN users u ON s.user_id=u.id JOIN subjects sub ON g.subject_id=sub.id");
 ?>
 
 
@@ -59,10 +59,9 @@ $grades= $conn->query("SELECT g.id,u.fullname,sub.name AS subject,g.grade, g.ter
     <form method="POST">
         <select name="student_id" required>
             <option value="">--select student--</option> 
-            <?php while($s=$students->fetch_assoc());?>
-            <option value="<?php echo $s['id']; ?>">
+            <?php while($s=$students->fetch_assoc()):?>
+             <option value="<?php echo $s['id']; ?>">
                 <?php echo $s['fullname'];?>
-            
             </option>
             <?php endwhile; ?>
         </select><br><br>
@@ -70,10 +69,10 @@ $grades= $conn->query("SELECT g.id,u.fullname,sub.name AS subject,g.grade, g.ter
 
         <select name="subject_id" requiered>
             <option value="">--select subject--</option>
-            <?php while($sub=4subjects->fetch_assoc()); ?>
-            <option value="<?php echo &sub['id']; ?>">
+            <?php while($sub=$subjects->fetch_assoc()):?>
+              <option value="<?php echo $sub['id']; ?>">
                 <?php echo $sub['name']; ?>
-            </option>
+              </option>
             <?php endwhile;?>
 
         </select><br><br>
@@ -101,7 +100,7 @@ $grades= $conn->query("SELECT g.id,u.fullname,sub.name AS subject,g.grade, g.ter
                 <th>Year</th>
             <th>Actions</th>
             </tr>
-            <?php while($row =$grades->fetch_assoc()); ?>
+            <?php while($row =$grades->fetch_assoc()): ?>
             <tr>
                 <td><?php echo $row['id'];?></td>
                     <td><?php echo $row['fullname'];?></td>
@@ -127,7 +126,7 @@ $grades= $conn->query("SELECT g.id,u.fullname,sub.name AS subject,g.grade, g.ter
             }
         }
         ?>
-        <?php if(isset($edit_grade));?>
+        <?php if(isset($edit_grade)):?>
         <h3>Edit grade</h3>
         <form method="POST">
             <input type="hidden" name="grade_id" value="<?php echo $edit_grade['id'];?>">
