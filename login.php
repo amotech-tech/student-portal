@@ -1,6 +1,14 @@
 <?php
 session_start(); // start session
 include "config.php"; // database connection
+if($user['status'] == 'pending'){
+    echo "Your account is pending approval by admin.";
+    exit();
+}
+if($user['status'] == 'denied'){
+    echo "Your account was denied by admin.";
+    exit();
+}
 
 if(isset($_POST['login'])){
     $email = $_POST['email'];

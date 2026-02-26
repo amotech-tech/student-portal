@@ -12,7 +12,7 @@ if(isset($_POST['register'])){
     if($check->num_rows > 0){
         $error = "Email already registered!";
     } else {
-        $sql = "INSERT INTO users (fullname,email,password,role) VALUES ('$fullname','$email','$password','$role')";
+        $sql = "INSERT INTO users (fullname,email,password,role,status) VALUES ('$fullname','$email','$password','$role','pending')";
         if($conn->query($sql)){
             $success = "Registered successfully!";
         } else {

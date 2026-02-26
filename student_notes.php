@@ -26,16 +26,42 @@ $notes = $conn->query("SELECT * FROM class_notes WHERE id=".$student['id']." ORD
      margin:0;}
     .sidebar{width:220px; 
     background:#492828; 
-    color:white; display:flex; flex-direction:column; align-items:center; padding-top:20px;}
-    .sidebar img{width:80px; height:80px; border-radius:50%; object-fit:cover; margin-bottom:10px; border:2px solid #84934A;}
-    .sidebar h2{margin-bottom:20px; font-size:18px;}
-    .sidebar a{width:100%; padding:14px 20px; text-decoration:none; color:white; display:block; border-top:1px solid rgba(255,255,255,0.1);}
+    color:white; display:flex; 
+    flex-direction:column; 
+    align-items:center; 
+    padding-top:20px;}
+    .sidebar img{width:80px;
+     height:80px; 
+     border-radius:50%;
+      object-fit:cover; 
+      margin-bottom:10px; 
+      border:2px solid #84934A;}
+    .sidebar h2{margin-bottom:20px; 
+    font-size:18px;}
+    .sidebar a{width:100%; 
+    padding:14px 20px; 
+    text-decoration:none; 
+    color:white; 
+    display:block;
+     border-top:1px solid rgba(255,255,255,0.1);}
     .sidebar a:hover{background:#656D3F;}
-    .main{flex:1; padding:25px;}
-    h1{color:#492828; margin-bottom:20px;}
-    .note-card{background:white; padding:18px; border-radius:10px; margin-bottom:15px; border-left:5px solid #84934A; box-shadow:0 2px 6px rgba(0,0,0,0.15);}
-    .note-card h3{color:#492828; margin-bottom:5px;}
-    .note-card a{display:inline-block; margin-top:8px; padding:8px 14px; background:#84934A; color:white; border-radius:5px; text-decoration:none;}
+    .main{flex:1; 
+    padding:25px;}
+    h1{color:#492828;
+     margin-bottom:20px;}
+    .note-card{background:white; 
+    padding:18px;
+     border-radius:10px; 
+     margin-bottom:15px; 
+     border-left:5px solid #84934A;
+      box-shadow:0 2px 6px rgba(0,0,0,0.15);}
+    .note-card h3{color:#492828; 
+    margin-bottom:5px;}
+    .note-card a{display:inline-block;
+     margin-top:8px; padding:8px 14px;
+      background:#84934A; color:white; 
+      border-radius:5px; 
+      text-decoration:none;}
     .note-card a:hover{background:#656D3F;}
 </style>
 </head>
