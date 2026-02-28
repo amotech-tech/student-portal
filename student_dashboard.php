@@ -1,243 +1,201 @@
 <?php
 session_start();
-include "config.php";
+include("config.php");
 
-if(!isset($_SESSION['user_id']) || $_SESSION['role'] != 'student'){
+// Protect page
+if(!isset($_SESSION['student_id'])){
     header("Location: login.php");
-    exit;
+    exit();
 }
 
-$student_id = $_SESSION['user_id'];
+$student_id = $_SESSION['student_id'];
 
-/* Total Subjects */
-$subjects = $conn->query("SELECT COUNT(*) as total FROM grades WHERE student_id='$student_id'");
-$total_subjects = $subjects->fetch_assoc()['total'] ?? 0;
+// Get student details
+$student_query = $conn->query("SELECT * FROM students WHERE id = $student_id");
+$student = $student_query->fetch_assoc();
 
-/* Average Marks */
-$avg = $conn->query("SELECT AVG(marks) as average FROM grades WHERE student_id='$student_id'");
-$average_marks = round($avg->fetch_assoc()['average'] ?? 0,1);
+// Calculate GPA from grades table
+$gpa_query = "
+SELECT AVG(
+    CASE 
+        WHEN grade = 'A' THEN 4
+        WHEN grade = 'B' THEN 3
+        WHEN grade = 'C' THEN 2
+        WHEN grade = 'D' THEN 1
+        ELSE 0
+    END
+) AS gpa
+FROM grades
+WHERE student_id = $student_id
+";
 
-/* Attendance Percentage */
-$att = $conn->query("SELECT 
-    SUM(CASE WHEN status='Present' THEN 1 ELSE 0 END) as present,
-    COUNT(*) as total 
-    FROM attendance WHERE student_id='$student_id'");
-$att_data = $att->fetch_assoc();
-$attendance_percent = ($att_data['total'] > 0) 
-    ? round(($att_data['present']/$att_data['total'])*100,1) 
-    : 0;
+$gpa_result = $conn->query($gpa_query);
+$gpa_row = $gpa_result->fetch_assoc();
+$gpa = number_format($gpa_row['gpa'], 2);
 
-/* Recent Grades */
-$recent_grades = $conn->query("
-    SELECT subjects.subject_name, grades.marks
-    FROM grades
-    JOIN subjects ON grades.subject_id = subjects.id
-    WHERE grades.student_id='$student_id'
-    ORDER BY grades.id DESC LIMIT 5
-");
+// Count subjects
+$subjects_query = $conn->query("SELECT COUNT(DISTINCT subject_id) as total FROM grades WHERE student_id = $student_id");
+$subjects = $subjects_query->fetch_assoc()['total'];
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Student Dashboard</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+    <title>Student Dashboard</title>
 
-body{
-    display:flex;
-    background:#f4f6f9;
-    min-height:100vh;
-}
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-/* Sidebar */
-.sidebar{
-    width:230px;
-    background:#492828;
-    color:white;
-    padding:20px;
-}
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-.sidebar h2{
-    margin-bottom:30px;
-    text-align:center;
-}
-
-.sidebar a{
-    display:block;
-    color:white;
-    padding:10px;
-    margin-bottom:8px;
-    text-decoration:none;
-    border-radius:6px;
-}
-
-.sidebar a:hover{
-    background:#656D3F;
-}
-
-/* Main */
-.main{
-    flex:1;
-    padding:25px;
-}
-
-/* Topbar */
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-}
-
-.profile{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.profile img{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    object-fit:cover;
-}
-
-/* Cards */
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:20px;
-    margin-bottom:25px;
-}
-
-.card{
-    background:white;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.05);
-}
-
-.card h3{
-    font-size:14px;
-    color:#777;
-    margin-bottom:10px;
-}
-
-.card p{
-    font-size:22px;
-    font-weight:bold;
-    color:#492828;
-}
-
-/* Table */
-.table-card{
-    background:white;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.05);
-    margin-bottom:25px;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th,td{
-    padding:10px;
-    text-align:left;
-    border-bottom:1px solid #eee;
-}
-
-th{
-    background:#f9f9f9;
-}
-
-/* Quick actions */
-.actions a{
-    display:inline-block;
-    padding:10px 15px;
-    background:#84934A;
-    color:white;
-    text-decoration:none;
-    border-radius:6px;
-    margin-right:10px;
-    margin-top:10px;
-}
-
-.actions a:hover{
-    background:#656D3F;
-}
-
-@media(max-width:768px){
-    .sidebar{display:none;}
-}
-</style>
+    <style>
+        body{
+            background:#f4f6f9;
+        }
+        .sidebar{
+            height:100vh;
+            background:#1e293b;
+            color:white;
+            padding-top:20px;
+        }
+        .sidebar a{
+            color:#cbd5e1;
+            text-decoration:none;
+            display:block;
+            padding:12px 20px;
+        }
+        .sidebar a:hover{
+            background:#334155;
+            color:white;
+        }
+        .card{
+            border:none;
+            border-radius:15px;
+            box-shadow:0 4px 10px rgba(0,0,0,0.05);
+        }
+        .icon-box{
+            font-size:30px;
+            padding:15px;
+            border-radius:12px;
+            color:white;
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="sidebar">
-    <h2>Student Panel</h2>
-    <a href="#">Dashboard</a>
-    <a href="view_grades.php">My Grades</a>
-    <a href="view_attendance.php">Attendance</a>
-    <a href="profile.php">My Profile</a>
-    <a href="logout.php">Logout</a>
-</div>
+<div class="container-fluid">
+    <div class="row">
 
-<div class="main">
+        <!-- Sidebar -->
+        <div class="col-md-2 sidebar">
+            <h4 class="text-center mb-4">
+                <i class="fa-solid fa-user-graduate"></i> Student
+            </h4>
 
-    <div class="topbar">
-        <h2>Welcome, <?php echo $_SESSION['fullname']; ?></h2>
-        <div class="profile">
-            <img src="uploads/<?php echo $_SESSION['profile_picture'] ?? 'default.png'; ?>">
+            <a href="#"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+            <a href="#"><i class="fa-solid fa-book"></i> My Subjects</a>
+            <a href="#"><i class="fa-solid fa-chart-line"></i> Results</a>
+            <a href="#"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-10 p-4">
+
+            <!-- Top Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3>Welcome, <?php echo $student['fullname']; ?> 👋</h3>
+                <span class="text-muted"><?php echo date("l, d M Y"); ?></span>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="row g-4">
+
+                <!-- GPA -->
+                <div class="col-md-4">
+                    <div class="card p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-box bg-primary me-3">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h6 class="text-muted">GPA</h6>
+                                <h4><?php echo $gpa ? $gpa : "0.00"; ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subjects -->
+                <div class="col-md-4">
+                    <div class="card p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-box bg-success me-3">
+                                <i class="fa-solid fa-book-open"></i>
+                            </div>
+                            <div>
+                                <h6 class="text-muted">Total Subjects</h6>
+                                <h4><?php echo $subjects; ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grades Count -->
+                <div class="col-md-4">
+                    <div class="card p-4">
+                        <div class="d-flex align-items-center">
+                            <div class="icon-box bg-warning me-3">
+                                <i class="fa-solid fa-award"></i>
+                            </div>
+                            <div>
+                                <h6 class="text-muted">Total Grades</h6>
+                                <h4>
+                                    <?php
+                                    $grades_count = $conn->query("SELECT COUNT(*) as total FROM grades WHERE student_id = $student_id");
+                                    echo $grades_count->fetch_assoc()['total'];
+                                    ?>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Recent Grades Table -->
+            <div class="card mt-5 p-4">
+                <h5 class="mb-3"><i class="fa-solid fa-list"></i> Recent Grades</h5>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Subject ID</th>
+                            <th>Grade</th>
+                            <th>Term</th>
+                            <th>Year</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $grades = $conn->query("SELECT * FROM grades WHERE student_id = $student_id ORDER BY id DESC LIMIT 5");
+                        while($row = $grades->fetch_assoc()){
+                            echo "<tr>
+                                    <td>{$row['subject_id']}</td>
+                                    <td>{$row['grade']}</td>
+                                    <td>{$row['term']}</td>
+                                    <td>{$row['year']}</td>
+                                  </tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
-
-    <div class="cards">
-        <div class="card">
-            <h3>Total Subjects</h3>
-            <p><?php echo $total_subjects; ?></p>
-        </div>
-
-        <div class="card">
-            <h3>Average Marks</h3>
-            <p><?php echo $average_marks; ?>%</p>
-        </div>
-
-        <div class="card">
-            <h3>Attendance</h3>
-            <p><?php echo $attendance_percent; ?>%</p>
-        </div>
-    </div>
-
-    <div class="table-card">
-        <h3 style="margin-bottom:15px;">Recent Grades</h3>
-        <table>
-            <tr>
-                <th>Subject</th>
-                <th>Marks</th>
-            </tr>
-            <?php while($row = $recent_grades->fetch_assoc()){ ?>
-            <tr>
-                <td><?php echo $row['subject_name']; ?></td>
-                <td><?php echo $row['marks']; ?>%</td>
-            </tr>
-            <?php } ?>
-        </table>
-    </div>
-
-    <div class="table-card">
-        <h3>Quick Actions</h3>
-        <div class="actions">
-            <a href="view_grades.php">View Full Report</a>
-            <a href="view_attendance.php">Check Attendance</a>
-            <a href="profile.php">Edit Profile</a>
-        </div>
-    </div>
-
 </div>
 
 </body>

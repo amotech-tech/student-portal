@@ -1,45 +1,58 @@
 <?php
 session_start();
-include "config.php";
+include("config.php");
+
+$error = "";
 
 if(isset($_POST['login'])){
 
-    $email = trim($_POST['email']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT id, fullname, password, role, profile_picture FROM users WHERE email=?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // First check if user exists
+    $sql = "SELECT * FROM users WHERE email='$email' LIMIT 1";
+    $result = $conn->query($sql);
 
     if($result->num_rows > 0){
 
         $user = $result->fetch_assoc();
 
+        // Check password (hashed)
         if(password_verify($password, $user['password'])){
 
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['fullname'] = $user['fullname'];
-            $_SESSION['role'] = $user['role'];
-            $_SESSION['profile_picture'] = $user['profile_picture'];
+            // Check account status
+            if($user['status'] == "approved"){
 
-            if($user['role'] == 'admin'){
-                header("Location: dashboard.php");
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['fullname'] = $user['fullname'];
+                $_SESSION['role'] = $user['role'];
+                $_SESSION['profile_picture'] = $user['profile_picture'];
+
+                if($user['role'] == "admin"){
+                    header("Location:dashboard.php");
+                    exit();
+                }
+
+                elseif($user['role'] == "teacher"){
+                    header("Location: teacher_dashboard.php");
+                    exit();
+                }
+
+                elseif($user['role'] == "student"){
+                    header("Location: student_dashboard.php");
+                    exit();
+                }
+
+            } else {
+                $error = "Your account is pending approval. Please wait for admin approval.";
             }
-            elseif($user['role'] == 'teacher'){
-                header("Location: teacher_dashboard.php");
-            }
-            elseif($user['role'] == 'student'){
-                header("Location: student_dashboard.php");
-            }
-            exit;
 
         } else {
-            $error = "Invalid email or password.";
+            $error = "Wrong password!";
         }
 
     } else {
-        $error = "Invalid email or password.";
+        $error = "User not found!";
     }
 }
 ?>
