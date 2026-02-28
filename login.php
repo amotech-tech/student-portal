@@ -33,18 +33,18 @@ if(isset($_POST['login'])){
                     exit();
                 }
 
-                elseif($user['role'] == "teacher"){
+                if($user['role'] == "teacher"){
                     header("Location: teacher_dashboard.php");
                     exit();
                 }
 
-                elseif($user['role'] == "student"){
+                if($user['role'] == "student"){
                     header("Location: student_dashboard.php");
                     exit();
                 }
 
             } else {
-                $error = "Your account is pending approval. Please wait for admin approval.";
+                $error = "Your account is pending approval. Please wait for approval.";
             }
 
         } else {
