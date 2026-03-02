@@ -106,7 +106,7 @@ $students = $conn->query("SELECT * FROM users WHERE role='student' AND id='$clas
         <div class="top-bar">
             <input type="hidden" name="class_id" value="<?php echo $class_id; ?>">
             <div>
-                <label>Select Date:</label>
+                <label>Select-Date:</label>
                 <input type="date" name="date" required>
             </div>
         </div>
@@ -130,7 +130,7 @@ $students = $conn->query("SELECT * FROM users WHERE role='student' AND id='$clas
             <?php } ?>
         </table>
 
-        <button type="submit" name="save">Save Attendance</button>
+        <button type="submit" name="save">Save-Attendance</button>
 
     </form>
 </div>
