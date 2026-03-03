@@ -86,7 +86,7 @@ if(isset($_POST['save'])){
 <tr>
     <th>Student</th>
     <th>Subject</th>
-    <th>Marks</th>
+    <th>grade</th>
 </tr>
 
 <?php
@@ -104,7 +104,7 @@ while($row = $result->fetch_assoc()){
 <tr>
 <td><?php echo $row['fullname']; ?></td>
 <td><?php echo $row['name']; ?></td>
-<td><?php echo $row['mark']; ?></td>
+<td><?php echo $row['grade']; ?></td>
 </tr>
 
 <?php } ?>
