@@ -22,7 +22,7 @@ if($verify->num_rows == 0){
 /* Fetch students in this class */
 $students = $conn->query("SELECT * FROM users 
                           WHERE role='student' 
-                          AND class_id='$class_id'");
+                          AND id='$class_id'");
 
 /* Fetch subjects */
 $subjects = $conn->query("SELECT * FROM subjects");
@@ -95,7 +95,7 @@ $result = $conn->query("
     FROM grades
     JOIN users ON grades.student_id = users.id
     JOIN subjects ON grades.subject_id = subjects.id
-    WHERE users.class_id='$class_id'
+    WHERE users.id='$class_id'
 ");
 
 while($row = $result->fetch_assoc()){
@@ -104,7 +104,7 @@ while($row = $result->fetch_assoc()){
 <tr>
 <td><?php echo $row['fullname']; ?></td>
 <td><?php echo $row['name']; ?></td>
-<td><?php echo $row['marks']; ?></td>
+<td><?php echo $row['mark']; ?></td>
 </tr>
 
 <?php } ?>

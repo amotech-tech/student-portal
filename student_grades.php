@@ -88,7 +88,7 @@ text-align:left;}
 </tr>
 <?php while($g = $grades->fetch_assoc()): ?>
 <tr>
-<td><?php echo $g['classname']; ?></td>
+<td><?php echo $g['name']; ?></td>
 <td><?php echo $g['subject']; ?></td>
 <td><?php echo $g['grade']; ?></td>
 </tr>

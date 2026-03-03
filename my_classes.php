@@ -22,7 +22,7 @@ $classes = $conn->query("SELECT * FROM classes WHERE teacher_id='$teacher_id'");
 
 <?php while($c = $classes->fetch_assoc()){ ?>
 <tr>
-    <td><?php echo $c['classname']; ?></td>
+    <td><?php echo $c['name']; ?></td>
     <td>
         <a href="teacher_grades.php?class_id=<?php echo $c['id']; ?>">Manage Grades</a>
     </td>
