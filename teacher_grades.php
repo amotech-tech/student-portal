@@ -199,6 +199,6 @@ while($row = $result->fetch_assoc()){
 
 </table>
 
-<a href="my_classes.php" class="back">← Back to My Classes</a>
+<a href="my_classes.php" class="back">← Back</a>
 
 </div>
