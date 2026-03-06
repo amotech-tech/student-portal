@@ -58,8 +58,15 @@ $subjects = $conn->query("SELECT id, name FROM subjects");
 <head>
     <title>Manage Grades</title>
     <style>
-        body{font-family:'Segoe UI',sans-serif;margin:0;background:#ECECEC;display:flex;}
-        .sidebar{width:230px;background:#492828;color:white;min-height:100vh;padding-top:20px;}
+        body{font-family:'Segoe UI',        sans-serif;
+        margin:0;
+        background:#ECECEC;
+        display:flex;}
+        .sidebar{width:230px;
+        background:#492828;
+        color:white;
+        min-height:100vh;
+        padding-top:20px;}
         .sidebar h2{text-align:center;padding-bottom:20px;}
         .sidebar a{display:block;padding:14px 20px;color:white;text-decoration:none;}
         .sidebar a:hover{background:#656D3F;}
@@ -69,7 +76,9 @@ $subjects = $conn->query("SELECT id, name FROM subjects");
         input, select{width:100%;padding:10px;margin-bottom:15px;border-radius:5px;border:1px solid #ccc;}
         button{padding:10px 15px;background:#84934A;color:white;border:none;border-radius:5px;cursor:pointer;}
         button:hover{background:#656D3F;}
-        table{width:100%;border-collapse:collapse;background:white;border-radius:8px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+        table{width:100%;border-collapse:collapse;
+        background:white;border-radius:8px;
+        overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
         th,td{padding:12px;border-bottom:1px solid #ddd;text-align:left;}
         th{background:#84934A;color:white;}
         .action-btn{padding:6px 12px;border:none;border-radius:5px;color:white;text-decoration:none;margin-right:5px;}
@@ -81,7 +90,7 @@ $subjects = $conn->query("SELECT id, name FROM subjects");
 </head>
 <body>
 <div class="sidebar">
-    <h2>Admin Panel</h2>
+    <h2>Admin</h2>
     <a href="dashboard.php">Dashboard</a>
     <a href="students.php">Students</a>
     <a href="teachers.php">Teachers</a>
@@ -156,7 +165,7 @@ $subjects = $conn->query("SELECT id, name FROM subjects");
             </tr>
             <?php endwhile; ?>
         <?php else: ?>
-            <tr><td colspan="6" style="text-align:center;">No grades found</td></tr>
+            <tr><td colspan="6" style="text-align:center;">No grades Available</td></tr>
         <?php endif; ?>
     </table>
 </div>
