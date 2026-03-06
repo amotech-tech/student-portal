@@ -49,5 +49,5 @@ if(isset($_POST['post'])){
     <br><br>
     End Time: <input type="datetime-local" name="end_time" required>
     <br><br>
-    <button type="submit" name="post">Post Assignment</button>
+    <button type="submit" name="post">Post</button>
 </form>

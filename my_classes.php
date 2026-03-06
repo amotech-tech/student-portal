@@ -31,4 +31,4 @@ $classes = $conn->query("SELECT * FROM classes WHERE teacher_id='$teacher_id'");
 
 </table>
 
-<a href="teacher_dashboard.php">Back to Dashboard</a>
+<a href="teacher_dashboard.php">Back</a>

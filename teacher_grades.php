@@ -10,7 +10,6 @@ if($_SESSION['role'] != 'teacher'){
 $class_id = $_GET['class_id'];
 $teacher_id = $_SESSION['user_id'];
 
-/* Verify teacher owns this class */
 $verify = $conn->query("SELECT * FROM classes 
                         WHERE id='$class_id' 
                         AND teacher_id='$teacher_id'");
@@ -18,13 +17,10 @@ $verify = $conn->query("SELECT * FROM classes
 if($verify->num_rows == 0){
     die("Unauthorized access");
 }
-
-/* Fetch students in this class */
 $students = $conn->query("SELECT * FROM users 
                           WHERE role='student' 
                           AND id='$class_id'");
 
-/* Fetch subjects */
 $subjects = $conn->query("SELECT * FROM subjects");
 
 /* Save grade */
