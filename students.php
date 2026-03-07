@@ -133,12 +133,12 @@ $students = $conn->query("SELECT s.id, u.fullname, u.email, s.admission_no, s.da
     <a href="subjects.php"> Subjects</a>
     <a href="grades.php">Grades</a>
     <a href="attendance.php"> Attendance</a>
-    <a href="pending_users.php">Pending Users</a>
+    <a href="pending_users.php">Pending-Users</a>
     <a href="logout.php">Logout</a>
 </div>
 
 <div class="main">
-    <h2>Students Management</h2>
+    <h2>Students </h2>
 
     <?php if(isset($error)) echo "<div class='msg-error'>$error</div>"; ?>
     <?php if(isset($success)) echo "<div class='msg-success'>$success</div>"; ?>

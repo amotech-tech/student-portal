@@ -28,19 +28,77 @@ if(isset($_POST['upload'])){
 }
 ?>
 
-<h2>Upload Class Notes</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Class Notes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            max-width: 500px;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        select, input[type="text"], input[type="file"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        p {
+            text-align: center;
+            font-weight: bold;
+        }
+        p[style*="color:green"] {
+            color: #28a745 !important;
+        }
+        p[style*="color:red"] {
+            color: #dc3545 !important;
+        }
+    </style>
+</head>
+<body>
 
-<form method="POST" enctype="multipart/form-data">
-    <select name="class_id" required>
-        <option value="">Select Class</option>
-        <?php while($c = $classes->fetch_assoc()){ ?>
-            <option value="<?php echo $c['id']; ?>"><?php echo $c['classname']; ?></option>
-        <?php } ?>
-    </select>
-    <br><br>
-    <input type="text" name="title" placeholder="Note Title" required>
-    <br><br>
-    <input type="file" name="file" required>
-    <br><br>
-    <button type="submit" name="upload">Upload Note</button>
-</form>
+    <h2>Upload Class Notes</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        <select name="class_id" required>
+            <option value="">Select Class</option>
+            <?php while($c = $classes->fetch_assoc()){ ?>
+                <option value="<?php echo $c['id']; ?>"><?php echo $c['classname']; ?></option>
+            <?php } ?>
+        </select>
+
+        <input type="text" name="title" placeholder="Note Title" required>
+
+        <input type="file" name="file" required>
+
+        <button type="submit" name="upload">Upload Note</button>
+    </form>
+
+</body>
+</html>

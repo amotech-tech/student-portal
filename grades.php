@@ -165,7 +165,7 @@ $subjects = $conn->query("SELECT id, name FROM subjects");
             </tr>
             <?php endwhile; ?>
         <?php else: ?>
-            <tr><td colspan="6" style="text-align:center;">No grades Available</td></tr>
+            <tr><td colspan="6" style="text-align:center;">No grades</td></tr>
         <?php endif; ?>
     </table>
 </div>
