@@ -3,12 +3,13 @@ session_start();
 include("config.php");
 
 // Protect page
-if(!isset($_SESSION['student_id'])){
+if (!isset($_SESSION['role']) || $_SESSION['role'] != 'student') {
     header("Location: login.php");
     exit();
 }
 
-$student_id = $_SESSION['student_id'];
+
+$student_id = $_SESSION['user_id'];
 
 // Get student details
 $student_query = $conn->query("SELECT * FROM students WHERE id = $student_id");
@@ -94,10 +95,13 @@ $subjects = $subjects_query->fetch_assoc()['total'];
                 <i class="fa-solid fa-user-graduate"></i> Student
             </h4>
 
-            <a href="#"><i class="fa-solid fa-gauge"></i> Dashboard</a>
-            <a href="#"><i class="fa-solid fa-book"></i> My Subjects</a>
-            <a href="#"><i class="fa-solid fa-chart-line"></i> Results</a>
-            <a href="#"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="student_dashboard.php"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+            <a href="student_subjects.php"><i class="fa-solid fa-book"></i> My Subjects</a>
+            <a href="student_results.php"><i class="fa-solid fa-chart-line"></i> Results</a>
+            <a href="student_grades.php"><i class="fa-solid fa-chart-line"></i>grades</a>
+            <a href="student_notes"><i class="fa-solid fa-chart-line"></i> notes</a>
+            <a href="student_assignments.php"><i class="fa-solid fa-chart-line"></i> Assignments</a>
+            <a href="student_profile.php"><i class="fa-solid fa-user"></i> Profile</a>
             <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
         </div>
 
@@ -106,7 +110,7 @@ $subjects = $subjects_query->fetch_assoc()['total'];
 
             <!-- Top Header -->
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3>Welcome, <?php echo $student['fullname']; ?> 👋</h3>
+                <h3>Welcome, <?php echo $_SESSION['fullname']; ?> </h3>
                 <span class="text-muted"><?php echo date("l, d M Y"); ?></span>
             </div>
 

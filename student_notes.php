@@ -66,15 +66,21 @@ $notes = $conn->query("SELECT * FROM class_notes WHERE id=".$student['id']." ORD
 </style>
 </head>
 <body>
-<div class="sidebar">
-<img src="uploads/<?php echo $student['profile_picture']; ?>" alt="Profile">
-<h2><?php echo $student['fullname']; ?></h2>
-<a href="student_dashboard.php">Dashboard</a>
-<a href="student_notes.php">Notes</a>
-<a href="student_assignments.php">Assignments</a>
-<a href="student_profile.php">Profile</a>
-<a href="logout.php">Logout</a>
-</div>
+<!-- Sidebar -->
+        <div class="col-md-2 sidebar">
+            <h4 class="text-center mb-4">
+                <i class="fa-solid fa-user-graduate"></i> Student
+            </h4>
+
+            <a href="student_dashboard.php"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+            <a href="student_subjects.php"><i class="fa-solid fa-book"></i> My Subjects</a>
+            <a href="student_results.php"><i class="fa-solid fa-chart-line"></i> Results</a>
+            <a href="student_grades.php"><i class="fa-solid fa-chart-line"></i>grades</a>
+            <a href="student_notes"><i class="fa-solid fa-chart-line"></i> notes</a>
+            <a href="student_assignments.php"><i class="fa-solid fa-chart-line"></i> Assignments</a>
+            <a href="student_profile.php"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
 
 <div class="main">
 <h1>Class Notes</h1>
