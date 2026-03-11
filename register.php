@@ -90,14 +90,16 @@ body{height:100vh;display:flex;}
 
 .left{
     flex:1;
-    background:linear-gradient(135deg,#492828,#656D3F);
-    color:white;
+      background-image:url("school.jpg");
+    color:black;
+ 
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     padding:40px;
     text-align:center;
+    background-size:cover;
 }
 
 .left h1{font-size:38px;margin-bottom:20px;}
@@ -169,8 +171,7 @@ button:hover{background:#656D3F;}
 
 <div class="left">
     <h1>Create Account</h1>
-    <p>Register and upload your profile picture. 
-    Image will automatically resize to fit the system.</p>
+    <p>Register and upload your profile picture.</p>
 </div>
 
 <div class="right">

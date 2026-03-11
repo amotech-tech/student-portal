@@ -72,14 +72,15 @@ body{height:100vh;display:flex;}
 /* LEFT SIDE */
 .left{
     flex:1;
-    background:linear-gradient(135deg,#492828,#656D3F);
-    color:white;
+  background-image:url("school.jpg");
+    color:black;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     padding:40px;
     text-align:center;
+    background-size:cover;
 }
 
 .left h1{font-size:38px;margin-bottom:20px;}
@@ -201,7 +202,7 @@ button:hover{background:#656D3F;}
     <div class="login-box">
 
         <div class="logo">
-            <img src="logo.png" alt="Logo">
+            <img src="logo.jpg" alt="Logo">
             <h2>Login</h2>
         </div>
 

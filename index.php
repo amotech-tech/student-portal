@@ -1,71 +1,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>School Portal</title>
+<title>School Portal</title>
 
-    <style>
-        body{
-            margin:0;
-            padding:0;
-            font-family: Arial, sans-serif;
-            height:100vh;
+<style>
 
-            /* background image */
-            background-image: url("school.jpg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background-image:url("school.jpg");
+    background-size:cover;
+    background-position:center;
+}
 
-            display:flex;
-            justify-content:center;
-            align-items:center;
-        }
+/* overlay */
+.overlay{
+    background:rgba(0,0,0,0.6);
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+}
 
-        /* dark overlay so text is visible */
-        .overlay{
-            background: rgba(0,0,0,0.5);
-            width:100%;
-            height:100%;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-        }
+/* header */
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 60px;
+    color:white;
+}
 
-        .container{
-            text-align:center;
-            background-color: rgba(255,255,255,0.9);
-            padding:40px;
-            border-radius:10px;
-        }
 
-        h1{
-            color:#4CAF50; /* light green */
-            margin-bottom:30px;
-        }
+   .logo{text-align:center;margin-bottom:20px;}
+.logo img{width:60px;margin-bottom:10px;}
+.logo h2{color:#492828;}
 
-        .btn{
-            display:inline-block;
-            text-decoration:none;
-            padding:12px 25px;
-            margin:10px;
-            border-radius:6px;
-            font-size:18px;
-            color:white;
-        }
 
-        .register{
-            background-color:#4CAF50; /* light green */
-        }
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-size:16px;
+}
 
-        .login{
-            background-color:#8B4513; /* brown */
-        }
+nav a:hover{
+    color:#90ee90;
+}
 
-        .btn:hover{
-            opacity:0.8;
-        }
+/* center section */
+.hero{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
 
-    </style>
+.hero h1{
+    font-size:45px;
+    margin-bottom:20px;
+}
+
+/* buttons */
+.buttons{
+    margin-top:30px;
+}
+
+.btn{
+    padding:14px 30px;
+    margin:10px;
+    font-size:18px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.3s;
+    text-decoration:none;
+    display:inline-block;
+}
+
+/* register button */
+.register{
+    background:#90ee90;
+    color:black;
+}
+
+/* login button */
+.login{
+    background:#8B4513;
+    color:white;
+}
+
+/* animation */
+.btn:hover{
+    transform:scale(1.1);
+    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
+
+</style>
 
 </head>
 
@@ -73,12 +105,30 @@
 
 <div class="overlay">
 
-    <div class="container">
-        <h1>Welcome to School Portal</h1>
+<header>
+<div class="logo">
+            <img src="logo.jpg" alt="Logo">
+</div>
 
-        <a href="register.php" class="btn register">Register</a>
-        <a href="login.php" class="btn login">Login</a>
-    </div>
+<nav>
+
+<a href="register.php">Register</a>
+<a href="login.php">Login</a>
+</nav>
+</header>
+
+<div class="hero">
+<div>
+<h1>Welcome to the School Portal</h1>
+<p>Access your academic services quickly and easily</p>
+
+<div class="buttons">
+<a href="register.php" class="btn register">Register</a>
+<a href="login.php" class="btn login">Login</a>
+</div>
+
+</div>
+</div>
 
 </div>
 
