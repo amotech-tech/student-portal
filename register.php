@@ -178,7 +178,7 @@ button:hover{background:#656D3F;}
     <div class="register-box">
 
         <div class="logo">
-            <img id="preview" src="uploads/default.png">
+            <img id="preview" src="logo.jpg">
             <h2>Register</h2>
         </div>
 
