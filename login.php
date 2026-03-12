@@ -187,12 +187,11 @@ button:hover{background:#656D3F;}
 <!-- LEFT SIDE -->
 <div class="left">
     <h1>School Portal</h1>
-    <p>Welcome ,Follow the steps below to access your dashboard:</p>
+   
 
     <ul>
-        <li>Use your registered email address</li>
-        <li>Enter your password</li>
-        <li>Click Login</li>
+        <li>Use your registered email address and password to login</li>
+        
        
     </ul>
 </div>
