@@ -129,12 +129,18 @@ body{
 .activity-item:last-child{
     border:none;
 }
+.logo{text-align:center;margin-bottom:20px;}
+.logo img{width:60px;margin-bottom:10px;}
 </style>
 </head>
 <body>
 
 <div class="sidebar">
-    <h2>Admin Panel</h2>
+   
+    <div class="logo">
+            <img src="logo.jpg" alt="Logo">
+            <h2>Admin Panel</h2>
+        </div>
     <a href="students.php">Students</a>
     <a href="teachers.php">Teachers</a>
     <a href="classes.php">Classes</a>
