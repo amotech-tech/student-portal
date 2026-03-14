@@ -81,6 +81,8 @@ $subjects = $subjects_query->fetch_assoc()['total'];
             border-radius:12px;
             color:white;
         }
+        .logo{text-align:center;margin-bottom:20px;}
+.logo img{width:60px;margin-bottom:10px;}
     </style>
 </head>
 
@@ -91,9 +93,14 @@ $subjects = $subjects_query->fetch_assoc()['total'];
 
         <!-- Sidebar -->
         <div class="col-md-2 sidebar">
+              <div class="logo">
+            <img src="logo.jpg" alt="Logo">
+            
+        </div>
             <h4 class="text-center mb-4">
                 <i class="fa-solid fa-user-graduate"></i> Student
             </h4>
+          
 
             <a href="student_dashboard.php"><i class="fa-solid fa-gauge"></i> Dashboard</a>
             <a href="student_subjects.php"><i class="fa-solid fa-book"></i> My Subjects</a>
