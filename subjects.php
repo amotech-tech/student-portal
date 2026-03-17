@@ -79,11 +79,15 @@ $teachers = $conn->query("SELECT id, fullname FROM users WHERE role='teacher'");
         .msg-success{color:green;font-weight:bold;margin-bottom:15px;}
         .msg-error{color:red;font-weight:bold;margin-bottom:15px;}
         @media(max-width:768px){body{flex-direction:column;}.sidebar{width:100%;}table, form{font-size:14px;}}
-    </style>
+    .logo{text-align:center;margin-bottom:20px;}
+.logo img{width:60px;margin-bottom:10px;}</style>
 </head>
 <body>
 <div class="sidebar">
-    <h2>Admin Panel</h2>
+    <div class="logo">
+            <img src="logo.jpg" alt="Logo">
+            <h2>Admin Panel</h2>
+        </div>
     <a href="dashboard.php">Dashboard</a>
     <a href="students.php">Students</a>
     <a href="teachers.php">Teachers</a>
