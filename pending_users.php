@@ -108,13 +108,16 @@ $pending = $conn->query("SELECT * FROM users WHERE status='pending'");
         .deny{
             background:#492828;
         }
+        .logo{text-align:center;margin-bottom:20px;}
+.logo img{width:60px;margin-bottom:10px;}
     </style>
 </head>
 <body>
-
-
 <div class="sidebar">
-    <h2>Admin Panel</h2>
+    <div class="logo">
+            <img src="logo.jpg" alt="Logo">
+            <h2>Admin Panel</h2>
+        </div>
     <a href="dashboard.php">Dashboard</a>
     <a href="students.php">Students</a>
     <a href="teachers.php">Teachers</a>
@@ -125,7 +128,6 @@ $pending = $conn->query("SELECT * FROM users WHERE status='pending'");
     <a href="pending_users.php">Pending Users</a>
     <a href="logout.php">Logout</a>
 </div>
-
 <div class="main">
     <h2>Pending User Approvals</h2>
 
