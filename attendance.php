@@ -75,11 +75,16 @@ $attendance = $conn->query("SELECT a.id, u.fullname AS student_name, c.name, a.d
         .delete-btn{background:#492828;}
         .msg-success{color:green;font-weight:bold;margin-bottom:15px;}
         .msg-error{color:red;font-weight:bold;margin-bottom:15px;}
+        .logo{text-align:center;margin-bottom:20px;}
+.logo img{width:60px;margin-bottom:10px;}
     </style>
 </head>
 <body>
 <div class="sidebar">
-    <h2>Admin Panel</h2>
+     <div class="logo">
+            <img src="logo.jpg" alt="Logo">
+            <h2>Admin Panel</h2>
+        </div>
     <a href="dashboard.php">Dashboard</a>
     <a href="students.php">Students</a>
     <a href="teachers.php">Teachers</a>
