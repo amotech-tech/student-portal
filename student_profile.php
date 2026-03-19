@@ -26,16 +26,26 @@ $student = $student_query->fetch_assoc();
 <body style="background:#f4f6f9;">
 <div class="container-fluid">
 <div class="row">
-<div class="col-md-2" style="background:#1e293b; color:white; height:100vh; padding-top:20px;">
-    <h4 class="text-center mb-4"><i class="fa-solid fa-user-graduate"></i> Student</h4>
-    <a href="student_dashboard.php" class="d-block p-2 text-white">Dashboard</a>
-    <a href="student_subjects.php" class="d-block p-2 text-white">My Subjects</a>
-    <a href="student_results.php" class="d-block p-2 text-white">Results</a>
-    <a href="student_assignments.php" class="d-block p-2 text-white">Assignments</a>
-    <a href="student_profile.php" class="d-block p-2 text-white">Profile</a>
-    <a href="logout.php" class="d-block p-2 text-white">Logout</a>
-</div>
+ <!-- Sidebar -->
+        <div class="col-md-2 sidebar">
+              <div class="logo">
+            <img src="logo.jpg" alt="Logo">
+            
+        </div>
+            <h4 class="text-center mb-4">
+                <i class="fa-solid fa-user-graduate"></i> Student
+            </h4>
+          
 
+            <a href="student_dashboard.php"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+            <a href="student_subjects.php"><i class="fa-solid fa-book"></i> My Subjects</a>
+            <a href="student_results.php"><i class="fa-solid fa-chart-line"></i> Results</a>
+            <a href="student_grades.php"><i class="fa-solid fa-chart-line"></i>grades</a>
+            <a href="student_notes.php"><i class="fa-solid fa-chart-line"></i> notes</a>
+            <a href="student_assignments.php"><i class="fa-solid fa-chart-line"></i> Assignments</a>
+            <a href="student_profile.php"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+        </div>
 <div class="col-md-10 p-4">
 <h3>My Profile</h3>
 <div class="card p-4 mt-3" style="border-radius:15px; box-shadow:0 4px 10px rgba(0,0,0,0.05);">

@@ -20,17 +20,30 @@ $results = $conn->query("SELECT * FROM grades WHERE student_id = $student_id ORD
         .sidebar a{ color:#cbd5e1; text-decoration:none; display:block; padding:12px 20px; }
         .sidebar a:hover{ background:#334155; color:white; }
         .card{ border:none; border-radius:15px; box-shadow:0 4px 10px rgba(0,0,0,0.05); }
+         .logo{text-align:center;margin-bottom:20px;}
+.logo img{width:60px;margin-bottom:10px;}
     </style>
 </head>
 <body>
 <div class="container-fluid">
     <div class="row">
+        <!-- Sidebar -->
         <div class="col-md-2 sidebar">
-            <h4 class="text-center mb-4"><i class="fa-solid fa-user-graduate"></i> Student</h4>
+              <div class="logo">
+            <img src="logo.jpg" alt="Logo">
+            
+        </div>
+            <h4 class="text-center mb-4">
+                <i class="fa-solid fa-user-graduate"></i> Student
+            </h4>
+          
+
             <a href="student_dashboard.php"><i class="fa-solid fa-gauge"></i> Dashboard</a>
             <a href="student_subjects.php"><i class="fa-solid fa-book"></i> My Subjects</a>
             <a href="student_results.php"><i class="fa-solid fa-chart-line"></i> Results</a>
-            <a href="student_assignments.php"><i class="fa-solid fa-list"></i> Assignments</a>
+            <a href="student_grades.php"><i class="fa-solid fa-chart-line"></i>grades</a>
+            <a href="student_notes.php"><i class="fa-solid fa-chart-line"></i> notes</a>
+            <a href="student_assignments.php"><i class="fa-solid fa-chart-line"></i> Assignments</a>
             <a href="student_profile.php"><i class="fa-solid fa-user"></i> Profile</a>
             <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
         </div>

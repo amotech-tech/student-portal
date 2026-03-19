@@ -106,7 +106,7 @@ $subjects = $subjects_query->fetch_assoc()['total'];
             <a href="student_subjects.php"><i class="fa-solid fa-book"></i> My Subjects</a>
             <a href="student_results.php"><i class="fa-solid fa-chart-line"></i> Results</a>
             <a href="student_grades.php"><i class="fa-solid fa-chart-line"></i>grades</a>
-            <a href="student_notes"><i class="fa-solid fa-chart-line"></i> notes</a>
+            <a href="student_notes.php"><i class="fa-solid fa-chart-line"></i> notes</a>
             <a href="student_assignments.php"><i class="fa-solid fa-chart-line"></i> Assignments</a>
             <a href="student_profile.php"><i class="fa-solid fa-user"></i> Profile</a>
             <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
